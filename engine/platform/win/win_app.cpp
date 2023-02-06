@@ -1,12 +1,16 @@
 #include "win_app.h"
+#include "win_app.h"
 #include "../../application.h"
 
 namespace u2
 {
-	void WinApp::BootStrap(LPCSTR title, int w, int h)
+	void WinApp::Init(LPCSTR name, int w, int h)
 	{
+		this->name = name;
+		this->width = w;
+		this->height = h;
 		this->RegisterWNDClass();
-		this->hwnd = this->InitHWND(title, w, h);
+		this->hwnd = this->InitHWND(name, w, h);
 		this->InitDC(w, h);
 	}
 
@@ -56,7 +60,7 @@ namespace u2
 		auto bitMap = CreateDIBSection(hdc, (BITMAPINFO*)&bitMapHeader, DIB_RGB_COLORS, (void**)&buff, NULL, 0);
 		assert(bitMap != NULL);
 		for (int i = 0; i < w; ++i) {
-			for (int j = 0; j < w; ++j) {
+			for (int j = 0; j < h; ++j) {
 				if (i == 4) {
 					buff[0] = (unsigned char)144;
 					buff[1] = (unsigned char)144;
@@ -65,7 +69,23 @@ namespace u2
 			}
 		}
 
+		this->hdc = hdc;
+
 		return dc;
+	}
+
+	void WinApp::OnStart(void)
+	{
+		ShowWindow(this->hwnd, SW_SHOW);
+	}
+
+	void WinApp::OnTick()
+	{
+		HDC window_dc = GetDC(this->hwnd);
+		int width = this->width;
+		int height = this->height;
+		BitBlt(window_dc, 0, 0, width, height, this->hdc, 0, 0, SRCCOPY);
+		ReleaseDC(this->hwnd, window_dc);
 	}
 
 	LRESULT CALLBACK WinApp::WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
@@ -92,9 +112,6 @@ namespace u2
 			break;
 		case WM_CLOSE:
 			Application::Quit();
-			break;
-		default:
-
 			break;
 		}
 		return DefWindowProc(hwnd, uMsg, wParam, lParam);

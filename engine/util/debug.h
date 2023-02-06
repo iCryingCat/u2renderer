@@ -24,7 +24,6 @@ namespace u2 {
 		Debug() {}
 		~Debug() {}
 
-	public:
 		static void Log(string msg);
 		static void Warning(string msg);
 		static void Error(string msg);

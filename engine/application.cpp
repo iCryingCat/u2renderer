@@ -18,13 +18,14 @@ namespace u2
 
 	void Application::OnStart(void)
 	{
-		plat->LoadWindow("U2 Render", 800, 600);
+		plat->DisplayWindow("U2 Render", 800, 600);
 		renderContext->OnStart();
 	}
 
 	void Application::OnTick(void)
 	{
 		renderContext->OnTick();
+		plat->OnTick();
 	}
 
 	void Application::OnDestroy(void)

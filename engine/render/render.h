@@ -7,14 +7,13 @@ namespace u2
 {
     class Render
     {
-    private:
-        
+    public:
+        static unsigned char* buff;
 
     public:
         Render() {}
         ~Render(){}
 
-    public:
         void OnStart(void);
         void OnTick(void);
     };

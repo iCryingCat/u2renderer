@@ -2,10 +2,11 @@
 
 namespace u2
 {
-	void Platform::LoadWindow(string title, int w, int h)
+	void Platform::DisplayWindow(string title, int w, int h)
 	{
 #ifdef WIN32
-		this->winApp->BootStrap(title.c_str(), w, h);
+		this->winApp->Init(title.c_str(), w, h);
+		this->winApp->OnStart();
 #endif // WIN32
 
 	}
@@ -18,6 +19,7 @@ namespace u2
 	void Platform::OnTick(void)
 	{
 #ifdef WIN32
+		this->winApp->OnTick();
 #endif
 
 	}

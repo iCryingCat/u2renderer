@@ -25,8 +25,7 @@ namespace u2
 		Platform() {}
 		~Platform() {}
 
-	public:
-		void LoadWindow(string title, int w, int h);
+		void DisplayWindow(string title, int w, int h);
 		void HandleInput(KEY_CODE code, int state);
 		void OnTick(void);
 	};
