@@ -1,11 +1,9 @@
-#pragma once
+#ifndef _WINAPP_H_
+#define _WINAPP_H_
 
-#include <string>
 #include <assert.h>
 #include <windows.h>
 #include <windowsX.h>
-
-using string = std::string;
 
 namespace u2
 {
@@ -30,3 +28,4 @@ namespace u2
 		void BootStrap(LPCSTR title, int w, int h);
 	};
 }
+#endif // !_WINAPP_H_

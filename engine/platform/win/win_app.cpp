@@ -1,4 +1,5 @@
 #include "win_app.h"
+#include "../../application.h"
 
 namespace u2
 {
@@ -23,32 +24,36 @@ namespace u2
 	HWND WinApp::InitHWND(LPCSTR title, int w, int h)
 	{
 		auto hwnd = CreateWindowEx(
-			NULL,
+			0,
 			LPSZ_CLASS_NAME,
 			title,
-			NULL,
-			0,
-			0,
+			WS_OVERLAPPEDWINDOW,
+			CW_USEDEFAULT,
+			CW_USEDEFAULT,
 			w,
 			h,
 			NULL,
 			NULL,
 			this->hInstance,
 			this);
-		assert(this->hwnd != NULL);
+		assert(hwnd != NULL);
 		return hwnd;
 	}
 
 	HDC WinApp::InitDC(LONG w, LONG h)
 	{
 		auto dc = GetDC(this->hwnd);
-		dc = CreateCompatibleDC(dc);
+		auto hdc = CreateCompatibleDC(dc);
 		ReleaseDC(this->hwnd, dc);
 		BITMAPINFOHEADER bitMapHeader;
+		bitMapHeader.biSize = sizeof(BITMAPINFOHEADER);
 		bitMapHeader.biWidth = w;
 		bitMapHeader.biHeight = h;
+		bitMapHeader.biPlanes = 1;
+		bitMapHeader.biBitCount = 32;
+		bitMapHeader.biCompression = BI_RGB;
 		unsigned char* buff;
-		auto bitMap = CreateDIBSection(dc, (BITMAPINFO*)&bitMapHeader, DIB_RGB_COLORS, (void**)&buff, NULL, 0);
+		auto bitMap = CreateDIBSection(hdc, (BITMAPINFO*)&bitMapHeader, DIB_RGB_COLORS, (void**)&buff, NULL, 0);
 		assert(bitMap != NULL);
 		for (int i = 0; i < w; ++i) {
 			for (int j = 0; j < w; ++j) {
@@ -85,7 +90,11 @@ namespace u2
 		case WM_MOUSEWHEEL:
 
 			break;
+		case WM_CLOSE:
+			Application::Quit();
+			break;
 		default:
+
 			break;
 		}
 		return DefWindowProc(hwnd, uMsg, wParam, lParam);

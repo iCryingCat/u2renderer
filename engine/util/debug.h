@@ -1,7 +1,9 @@
-#pragma once
+#ifndef _DEBUG_H_
+#define _DEBUG_H_
 
 #include <iostream>
 #include <string>
+
 #include "windows.h"
 
 using string = std::string;
@@ -28,3 +30,4 @@ namespace u2 {
 		static void Error(string msg);
 	};
 }
+#endif // !_DEBUG_H_

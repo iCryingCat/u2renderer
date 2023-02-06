@@ -1,11 +1,9 @@
-#pragma once
+#ifndef _PLATFORM_H_
+#define _PLATFORM_H_
 
-#include<memory>
-#include<string>
+#include <memory>
+#include <string>
 #include "win/win_app.h"
-#include "win/win_app.cpp"
-#include "../util/convert_util.h"
-#include "../util/convert_util.cpp"
 
 using string = std::string;
 
@@ -21,14 +19,16 @@ namespace u2
 	class Platform
 	{
 	private:
-		std::shared_ptr<WinApp> winApp;
+		std::shared_ptr<WinApp> winApp = std::make_shared<WinApp>();
 
 	public:
 		Platform() {}
 		~Platform() {}
-	
+
 	public:
 		void LoadWindow(string title, int w, int h);
 		void HandleInput(KEY_CODE code, int state);
+		void OnTick(void);
 	};
 }
+#endif // !_PLATFORM_H_

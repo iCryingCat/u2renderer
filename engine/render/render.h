@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _RENDER_H_
+#define _RENDER_H_
 
 #include <memory>
 
@@ -14,7 +15,8 @@ namespace u2
         ~Render(){}
 
     public:
-        void Load();
-        void Tick();
+        void OnStart(void);
+        void OnTick(void);
     };
 }
+#endif // !_RENDER_H_
