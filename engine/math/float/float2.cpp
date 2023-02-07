@@ -2,16 +2,6 @@
 
 namespace u2
 {
-    Float2::Float2(float x, float y)
-    {
-         this->x = x;
-         this->y = y;
-    }
-
-    Float2::~Float2()
-    {
-    }
-
     Float2 Float2::operator+(const Float2 &f2)
     {
         this->x += f2.x;

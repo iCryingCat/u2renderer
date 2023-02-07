@@ -18,7 +18,7 @@ namespace u2
 
 	void Application::OnStart(void)
 	{
-		plat->DisplayWindow("U2 Render", 800, 600);
+		plat->DisplayWindow(this->name, this->width, this->height);
 		renderContext->OnStart();
 	}
 

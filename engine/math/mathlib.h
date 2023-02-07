@@ -3,14 +3,13 @@
 
 namespace u2
 {
-	class MathLib
+	class Mathlib
 	{
-	private:
 	public:
 		static float Zero;
-
-		MathMathLib) {}
-		~MathLib() {}
+	public:
+		Mathlib() {}
+		~Mathlib() {}
 
 		static bool Approximately(float, float);
 	};

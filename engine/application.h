@@ -10,6 +10,10 @@ namespace u2
 {
 	class Application
 	{
+	private:
+		string name = "U2 Render";
+		int width = 800;
+		int height = 600;
 	public:
 		static bool isRunning;
 		static std::shared_ptr<Platform> plat;

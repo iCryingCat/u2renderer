@@ -5,14 +5,15 @@ namespace u2
 {
     class Vector3
     {
-    private:
-        float x;
-        float y;
-        float z;
+    public:
+        float x = 0;
+        float y = 0;
+        float z = 0;
 
     public:
-        Vector3(float, float, float);
-        ~Vector3();
+        Vector3() {};
+        Vector3(float x, float y, float z) : x(x), y(y), z(z) {};
+        ~Vector3() {};
 
         Vector3 operator+(Vector3);
         Vector3 operator-(Vector3);

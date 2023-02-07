@@ -5,22 +5,23 @@ namespace u2
 {
     class Vector2
     {
-    private:
-        float x;
-        float y;
+    public:
+        float x = 0;
+        float y = 0;
 
     public:
-        Vector2(float, float);
-        ~Vector2();
+        Vector2() {};
+        Vector2(float x, float y) : x(x), y(y) {};
+        ~Vector2() {};
+
         Vector2 operator+(Vector2);
         Vector2 operator-(Vector2);
         Vector2 operator*(float);
         Vector2 operator/(float);
 
         float Dot(Vector2);
-        Vector2 Normalize();
-
         float Magnitude();
+        Vector2 Normalize();
     };
 }
 #endif // !_VECTOR2_H_

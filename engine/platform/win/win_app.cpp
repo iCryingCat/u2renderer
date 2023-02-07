@@ -82,9 +82,7 @@ namespace u2
 	void WinApp::OnTick()
 	{
 		HDC window_dc = GetDC(this->hwnd);
-		int width = this->width;
-		int height = this->height;
-		BitBlt(window_dc, 0, 0, width, height, this->hdc, 0, 0, SRCCOPY);
+		BitBlt(window_dc, 0, 0, this->width, this->height, this->hdc, 0, 0, SRCCOPY);
 		ReleaseDC(this->hwnd, window_dc);
 	}
 

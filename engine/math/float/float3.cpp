@@ -2,17 +2,6 @@
 
 namespace u2
 {
-    Float3::Float3(float x, float y, float z)
-    {
-        this->x = x;
-        this->y = y;
-        this->z = z;
-    }
-
-    Float3::~Float3()
-    {
-    }
-
     Float3 Float3::operator+(const Float3 &f3)
     {
         this->x += f3.x;
